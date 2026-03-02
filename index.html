@@ -48,7 +48,7 @@ const App = () => {
       circles.push({ full: true, segments: den });
     }
     // Remainder circle
-    if (remainder > 0 || num === 0) {
+    if (remainder > 0 || (num === 0 && wholes === 0)) {
       circles.push({ full: false, segments: den, colored: remainder });
     }
 
@@ -200,12 +200,12 @@ const App = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-500 uppercase mb-2">Denominator (Pieces in a Whole)</label>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {[2, 3, 4, 5, 8, 10].map(d => (
                         <button 
                           key={d}
                           onClick={() => setDenominator(d)}
-                          className={`flex-1 py-3 rounded-xl font-bold transition-all ${denominator === d ? 'bg-[#003366] text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
+                          className={`flex-1 min-w-[60px] py-3 rounded-xl font-bold transition-all ${denominator === d ? 'bg-[#003366] text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
                         >
                           {d}
                         </button>
@@ -229,7 +229,7 @@ const App = () => {
               {renderFractionVisual(numerator, denominator)}
               
               <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100 flex items-start gap-4">
-                <div className="bg-orange-500 text-white p-2 rounded-lg"><PenTool size={20}/></div>
+                <div className="bg-orange-500 text-white p-2 rounded-lg shrink-0"><PenTool size={20}/></div>
                 <div>
                   <h4 className="font-bold text-orange-800">Tutor Prompt:</h4>
                   <p className="text-orange-700">"Look at the circles. How many are completely orange? That's your whole number! How many pieces are left in the last circle?"</p>
